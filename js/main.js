@@ -1,13 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== ROUTING SYSTEM =====
+    // ===== ROUTING SYSTEM WITH SMOOTH SCROLL =====
     function navigateToSection(hash) {
         const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.classList.remove('active'));
-
         const targetSection = document.querySelector(hash || '#home');
+        
         if (targetSection) {
+            // Remove active class from all sections
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Add active class to target section
             targetSection.classList.add('active');
-            window.scrollTo(0, 0);
+            
+            // Smooth scroll to top of the newly active section
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     }
 
