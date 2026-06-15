@@ -3,299 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Akshay Patwari - Software Engineer Portfolio">
-    <title>Akshay Patwari | Software Engineer</title>
+    <meta name="description" content="Akshay Patwari – Staff Software Engineer with 7.5+ years building scalable Java/Spring microservices, Kubernetes deployments, and MLOps platforms.">
+    <meta property="og:title" content="Akshay Patwari | Staff Software Engineer">
+    <meta property="og:description" content="7.5+ years in Java, Spring Boot, Kubernetes, and MLOps. Currently Staff Engineer at Samsung Electro-Mechanics.">
+    <meta property="og:type" content="website">
+    <title>Akshay Patwari | Staff Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-    </div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Stars -->
-    <div class="stars" id="stars"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <img src="static/image/IDCard.JPG" alt="Akshay Patwari" class="logo-img">
-                AP
-            </div>
-            <ul class="nav-links">
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">AP</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#github" class="nav-link">GitHub</a></li>
-                <li><a href="#leetcode" class="nav-link">LeetCode</a></li>
-                <li><a href="#linkedin" class="nav-link">LinkedIn</a></li>
-                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="static/content/AkshayPatwari.pdf" class="nav-cta" download>Resume</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="section active">
-        <div class="hero-content">
-            <div class="profile-img-container">
-                <img src="static/image/IMG_9305.jpg" alt="Akshay Patwari" class="profile-img" id="profileImage">
-            </div>
-            <h1 class="hero-title">Akshay Patwari</h1>
-            <h2 class="hero-subtitle"><span class="typing-text" id="typingText"></span></h2>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#resume" class="btn btn-secondary" id="heroDownloadBtn">Download Resume</a>
-            </div>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/akshaypatwari" target="_blank" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/learn-patwari" target="_blank" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:akshaypatwariap@gmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+919164291810" class="social-link">
-                    <i class="fas fa-phone"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+    <main id="main-content">
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">About Me</h2>
-            <div class="about-grid fade-in">
-                <div class="glass-card">
-                    <h3 style="font-size: 28px; margin-bottom: 20px;">Who I Am</h3>
-                    <p class="about-text" id="aboutDescription">
-                        Software Engineer based in Bengaluru with 6+ years delivering backend-heavy, cloud-native products. I focus on reliable Java/Spring services, Kubernetes/Docker deployments, and secure integrations—balancing scalability with clean, maintainable code.
-                    </p>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">6+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="projectCount">3</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="problemsSolved">200+</div>
-                            <div class="stat-label">Problems Solved</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">∞</div>
-                            <div class="stat-label">Coffee Cups</div>
-                        </div>
+        <!-- Hero -->
+        <section id="home" class="section hero-section">
+            <div class="hero-inner">
+                <div class="hero-photo-wrap">
+                    <img src="static/image/IMG_9305.jpg" alt="Akshay Patwari" class="hero-photo">
+                </div>
+                <div class="hero-text">
+                    <p class="hero-eyebrow">Staff Software Engineer</p>
+                    <h1 class="hero-name">Akshay Patwari</h1>
+                    <p class="hero-tagline"><span class="typed-text" id="typedText"></span><span class="cursor">|</span></p>
+                    <p class="hero-bio"><span data-exp-professional>7+</span> years building scalable Java microservices, Kubernetes deployments, and MLOps platforms across insurance, banking, and AI sectors. Currently leading a 6-engineer team at Samsung Electro-Mechanics.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Get in touch</a>
+                        <a href="static/content/AkshayPatwari.pdf" class="btn btn-outline" download>Download resume</a>
                     </div>
-                </div>
-                <div class="glass-card">
-                    <h3 style="font-size: 28px; margin-bottom: 20px;">What I Do</h3>
-                    <p class="about-text">
-                        <strong>🚀 Full Stack Development</strong><br>
-                        Building scalable web applications with Java, Angular, and modern frameworks.
-                    </p>
-                    <p class="about-text">
-                        <strong>☁️ Cloud & DevOps</strong><br>
-                        Deploying and managing applications with Kubernetes, Docker, and CI/CD pipelines.
-                    </p>
-                    <p class="about-text">
-                        <strong>🤖 MLOps & AI</strong><br>
-                        Implementing AI model deployment pipelines and machine learning operations.
-                    </p>
-                    <p class="about-text">
-                        <strong>📊 Database Management</strong><br>
-                        Expertise in Oracle DB, MySQL, and database optimization.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Skills & Technologies</h2>
-            <p class="about-text" style="margin-top: 10px;">
-                Backend-first engineer comfortable owning services end-to-end—design, build, ship, and run. Strengths in Java/Spring, Kubernetes/Docker, CI/CD, databases, and pragmatic problem solving.
-            </p>
-            <div class="skills-grid fade-in" id="skillsGrid">
-                <!-- Skills will be dynamically loaded -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Projects</h2>
-            <p class="about-text" style="margin-top: 10px;">
-                A concise snapshot of my resume projects—vertically aligned for quick scanning.
-            </p>
-            <div class="projects-grid fade-in" id="projectsGrid"></div>
-        </div>
-    </section>
-
-    <!-- GitHub Section -->
-    <section id="github" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">GitHub Profile</h2>
-            <div class="github-stats fade-in" id="githubStats">
-                <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
-                    <div class="loading"></div>
-                    <p style="margin-top: 20px; color: var(--text-secondary);">Loading GitHub data...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LeetCode Section -->
-    <section id="leetcode" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">LeetCode Progress</h2>
-            <div class="leetcode-stats fade-in" id="leetcodeStats">
-                <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
-                    <div class="loading"></div>
-                    <p style="margin-top: 20px; color: var(--text-secondary);">Loading LeetCode stats...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LinkedIn Section -->
-    <section id="linkedin" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Professional Experience</h2>
-            <div class="linkedin-content fade-in">
-                <div class="experience-timeline" id="experienceTimeline">
-                    <div style="text-align: center; padding: 50px;">
-                        <div class="loading"></div>
-                        <p style="margin-top: 20px; color: var(--text-secondary);">Loading experience...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resume Section -->
-    <section id="resume" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Resume</h2>
-            <div class="resume-container fade-in">
-                <div class="resume-preview">
-                    <div class="resume-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3 style="font-size: 28px; margin-bottom: 15px;">Download My Resume</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 30px;">
-                        Get a comprehensive overview of my experience, skills, and achievements.
-                    </p>
-                    <button class="btn btn-primary" id="downloadResumeBtn">
-                        <i class="fas fa-download"></i> Download PDF
-                    </button>
-                    <button class="btn btn-secondary" id="viewResumeBtn" style="margin-left: 15px;">
-                        <i class="fas fa-eye"></i> View Resume
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Get In Touch</h2>
-            <div class="contact-grid fade-in">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
+                    <div class="hero-socials">
+                        <a href="https://www.linkedin.com/in/akshaypatwari/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/learn-patwari" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:akshaypatwariap@gmail.com" aria-label="Email" class="social-icon">
                             <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <a href="mailto:akshaypatwariap@gmail.com" style="color: var(--text-secondary);">akshaypatwariap@gmail.com</a>
-                        </div>
+                        </a>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <a href="tel:+919164291810" style="color: var(--text-secondary);">+91 9164291810</a>
-                        </div>
+                </div>
+            </div>
+            <div class="hero-scroll-hint">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-label">About me</p>
+                    <h2 class="section-title">Who I am</h2>
+                </header>
+                <div class="about-grid reveal">
+                    <div class="about-copy">
+                        <p>Experienced Java Full Stack Developer based in Bengaluru with over <span data-exp-total>8+</span> years delivering production software in insurance, banking, and artificial intelligence. I specialize in backend-heavy, cloud-native architectures — reliable Java/Spring services, Kubernetes orchestration, and secure integrations.</p>
+                        <p>At Samsung Electro-Mechanics I lead the PADO MLOps platform team, managing the full AI model lifecycle from training through monitoring and drift-based redeployment. I have a particular interest in the intersection of DevOps and machine learning and have worked extensively with LangChain, LangGraph, and in-house LLMs.</p>
+                        <p>I believe clean, maintainable code and strong team communication are what separate good engineering from great engineering.</p>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-num" data-exp-total>8+</span>
+                            <span class="stat-lbl">Yrs total exp.</span>
                         </div>
-                        <div>
-                            <h4>Location</h4>
-                            <p style="color: var(--text-secondary);">Bengaluru, India</p>
+                        <div class="stat-item">
+                            <span class="stat-num" data-exp-professional>7+</span>
+                            <span class="stat-lbl">Yrs professional</span>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
+                        <div class="stat-item">
+                            <span class="stat-num">5</span>
+                            <span class="stat-lbl">Companies</span>
                         </div>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <a href="https://linkedin.com/in/akshaypatwari" target="_blank" style="color: var(--text-secondary);">linkedin.com/in/akshaypatwari</a>
+                        <div class="stat-item">
+                            <span class="stat-num">6</span>
+                            <span class="stat-lbl">Developers led</span>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 30px;">Send Me a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" required>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="section section-alt">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-label">Career</p>
+                    <h2 class="section-title">Professional experience</h2>
+                </header>
+                <div class="timeline">
+
+                    <article class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-body">
+                            <div class="timeline-meta">
+                                <span class="timeline-company">Samsung Electro-Mechanics</span>
+                                <span class="timeline-period">Feb 2022 – Present</span>
+                            </div>
+
+                            <!-- Promotion sub-timeline -->
+                            <div class="promotion-track">
+                                <div class="promo-role current">
+                                    <div class="promo-role-header">
+                                        <span class="promo-badge">CL-2 → CL-3</span>
+                                        <h3 class="timeline-role">Staff Engineer – CL 3</h3>
+                                        <span class="promo-period">Apr 2026 – Present</span>
+                                    </div>
+                                    <ul class="timeline-bullets">
+                                        <li>Promoted from CL-2 to CL-3, taking on expanded scope including full architecture ownership of the PADO platform and cross-team technical direction.</li>
+                                        <li>Initiated and leading <strong>Python-based microservice development</strong> for new platform capabilities, introducing Python into the team's technology stack alongside Java.</li>
+                                        <li>Driving service design decisions, establishing architectural patterns, and ensuring consistency across the platform's growing surface area.</li>
+                                    </ul>
+                                </div>
+                                <div class="promo-divider"></div>
+                                <div class="promo-role">
+                                    <div class="promo-role-header">
+                                        <h3 class="timeline-role">Software Engineer – CL 2</h3>
+                                        <span class="promo-period">Feb 2022 – Apr 2026</span>
+                                    </div>
+                                    <ul class="timeline-bullets">
+                                        <li>Team lead on the <strong>PADO Platform</strong> — built and deployed scalable MLOps microservices covering Training, Deployment, Monitoring, and drift-based Redeployment, cutting AI model lifecycle downtime significantly.</li>
+                                        <li>Leveraged Kubernetes orchestration for containerised applications, ensuring high resource utilisation, scalability, and resilience across environments.</li>
+                                        <li>Implemented SSO from Knox Portal using Keycloak, securing user actions across Kubeflow, Grafana, Jupyter Notebooks, and Docker.</li>
+                                        <li>Managed a team of six Java developers — designed features, conducted code reviews, and maintained client satisfaction through direct communication.</li>
+                                        <li>Travelled on-site to Suwon, South Korea for requirement gathering and POC work with solution providers on MLOps architecture.</li>
+                                        <li>Leveraged in-house LLMs (LangChain, LangGraph) in day-to-day platform workflows.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="timeline-tags">
+                                <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Keycloak</span><span class="tag">Kubeflow</span><span class="tag">LangChain</span><span class="tag">MLOps</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email" required>
+                    </article>
+
+                    <article class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-body">
+                            <div class="timeline-meta">
+                                <span class="timeline-company">Oracle Financial Services Software Ltd</span>
+                                <span class="timeline-period">Aug 2021 – Feb 2022</span>
+                            </div>
+                            <h3 class="timeline-role">Technical Staff Consultant</h3>
+                            <ul class="timeline-bullets">
+                                <li>Developer on the <strong>Flexcube</strong> banking application — performed module-wise code analysis and built PL/SQL packages, functions, and procedures.</li>
+                                <li>Developed and deployed production data-fix patches for <strong>Barclays Bank</strong> using PL/SQL cursors and SQL queries.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span class="tag">PL/SQL</span><span class="tag">Oracle DB</span><span class="tag">Banking Systems</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="message" required></textarea>
+                    </article>
+
+                    <article class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-body">
+                            <div class="timeline-meta">
+                                <span class="timeline-company">Chubb International (Cognizant)</span>
+                                <span class="timeline-period">Feb 2019 – Aug 2021</span>
+                            </div>
+                            <h3 class="timeline-role">Programmer Analyst</h3>
+                            <ul class="timeline-bullets">
+                                <li>Developer on the <strong>Masterpiece</strong> Policy Builder Tool — delivered client-required changes with technical precision.</li>
+                                <li>Designed and implemented an efficient walkback handling module to improve production resilience and reduce incident count.</li>
+                            </ul>
+                            <div class="timeline-tags">
+                                <span class="tag">Java</span><span class="tag">Insurance Domain</span><span class="tag">PL/SQL</span>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
+                    </article>
+
+                    <article class="timeline-item reveal">
+                        <div class="timeline-marker timeline-marker-intern"></div>
+                        <div class="timeline-body">
+                            <div class="timeline-meta">
+                                <span class="timeline-company">Agrainz Solutions</span>
+                                <span class="timeline-period">Feb 2018 – Aug 2018</span>
+                            </div>
+                            <div class="internship-label">Internship · 6 months</div>
+                            <h3 class="timeline-role">Trainee Software Engineer</h3>
+                            <ul class="timeline-bullets">
+                                <li>Worked across two in-house products — <strong>Agrainz</strong> (agri-tech platform) and <strong>Zedua</strong> (ed-tech platform) — gaining hands-on exposure to the full software development lifecycle.</li>
+                                <li>Contributed to feature development, bug fixes, and testing under senior engineer mentorship, establishing core Java and web development fundamentals.</li>
+                                <li>First industry exposure to version control (Git), agile workflows, and production deployment processes.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-label">Expertise</p>
+                    <h2 class="section-title">Skills &amp; technologies</h2>
+                </header>
+                <div class="skills-categories reveal">
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java 8–21</span>
+                            <span class="skill-tag">Angular 17</span>
+                            <span class="skill-tag">PL/SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Frameworks</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Spring Boot 3</span>
+                            <span class="skill-tag">Spring JPA</span>
+                            <span class="skill-tag">Microservices</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Infrastructure</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Jenkins CI/CD</span>
+                            <span class="skill-tag">Keycloak</span>
+                            <span class="skill-tag">NiFi</span>
+                            <span class="skill-tag">Nexus</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Oracle DB</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Messaging</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">RabbitMQ</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">AI / MLOps</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">LangGraph</span>
+                            <span class="skill-tag">Kubeflow</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">Jupyter</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Process</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Agile / Scrum</span>
+                            <span class="skill-tag">Jira</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Technical Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GitHub Stats -->
+                <div class="github-block reveal" id="githubBlock">
+                    <h3 class="subsection-title">GitHub activity</h3>
+                    <div class="github-stats" id="githubStats">
+                        <div class="loading-row"><span class="loader"></span> Loading GitHub data…</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements -->
+        <section id="achievements" class="section section-alt">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-label">Recognition</p>
+                    <h2 class="section-title">Achievements &amp; awards</h2>
+                </header>
+                <div class="achievements-grid">
+
+                    <div class="achievement-card reveal">
+                        <div class="achievement-icon"><i class="fas fa-users"></i></div>
+                        <div class="achievement-body">
+                            <h3>Java technical lead</h3>
+                            <p class="achievement-meta">Jan 2024 – Present · Samsung Electro-Mechanics</p>
+                            <p>Leading a team of 6 Java developers, ensuring project milestones are met while maintaining high quality standards.</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card reveal">
+                        <div class="achievement-icon"><i class="fas fa-award"></i></div>
+                        <div class="achievement-body">
+                            <h3>Best trainer in Java</h3>
+                            <p class="achievement-meta">Feb 2023 – Dec 2024 · Samsung Electro-Mechanics</p>
+                            <p>Recognised by the organisation for conducting technical training sessions within engineering teams.</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card reveal">
+                        <div class="achievement-icon"><i class="fas fa-star"></i></div>
+                        <div class="achievement-body">
+                            <h3>Doing the right thing, the right way</h3>
+                            <p class="achievement-meta">Dec 2020 · Cognizant</p>
+                            <p>Award for consistent client interaction, implementing necessary changes, and upholding professional standards under pressure.</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card reveal">
+                        <div class="achievement-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="achievement-body">
+                            <h3>CSR — training the next generation</h3>
+                            <p class="achievement-meta">Community initiative</p>
+                            <p>Participated in a Corporate Social Responsibility event teaching high school students about the latest technologies in the software industry.</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card reveal">
+                        <div class="achievement-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="achievement-body">
+                            <h3>B.E. in Information Science &amp; Engineering</h3>
+                            <p class="achievement-meta">2017 · MVJ College of Engineering, Bengaluru</p>
+                            <p>Graduated with a Bachelor of Engineering in Information Science and Engineering.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-label">Let's talk</p>
+                    <h2 class="section-title">Get in touch</h2>
+                </header>
+                <div class="contact-grid">
+                    <div class="contact-info reveal">
+                        <p class="contact-intro">Open to senior engineering, staff, and technical leadership roles. Feel free to reach out for collaboration, consulting, or just a conversation.</p>
+                        <ul class="contact-list">
+                            <li>
+                                <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                                <a href="mailto:akshaypatwariap@gmail.com">akshaypatwariap@gmail.com</a>
+                            </li>
+                            <li>
+                                <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                                <a href="tel:+919164291810">+91 9164291810</a>
+                            </li>
+                            <li>
+                                <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                <span>Bengaluru, India</span>
+                            </li>
+                            <li>
+                                <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+                                <a href="https://www.linkedin.com/in/akshaypatwari/" target="_blank" rel="noopener">linkedin.com/in/akshaypatwari</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form id="contactForm" class="contact-form reveal" novalidate>
+                        <div class="form-field">
+                            <label for="cf-name">Name</label>
+                            <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Your name">
+                            <span class="field-error" id="nameError"></span>
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-email">Email</label>
+                            <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="your@email.com">
+                            <span class="field-error" id="emailError"></span>
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-message">Message</label>
+                            <textarea id="cf-message" name="message" required placeholder="Tell me what you have in mind…"></textarea>
+                            <span class="field-error" id="msgError"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send message</button>
+                        <p class="form-notice" id="formNotice"></p>
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Coming Soon Modal -->
-    <div class="coming-soon-modal" id="comingSoonModal">
-        <div class="coming-soon-content">
-            <button class="close-modal-btn" id="closeModalBtn">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="coming-soon-icon">
-                <i class="fas fa-tools"></i>
-            </div>
-            <h2 class="coming-soon-title">Coming Soon</h2>
-            <p class="coming-soon-text">
-                This feature is currently under development.<br>
-                Check back soon for updates!
-            </p>
-            <button class="btn btn-primary" id="backHomeBtn">
-                <i class="fas fa-home"></i> Back to Home
-            </button>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p class="footer-copy">© 2025 Akshay Patwari. All rights reserved.</p>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="mailto:akshaypatwariap@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/akshaypatwari/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/learn-patwari" target="_blank" rel="noopener">GitHub</a>
+            </nav>
         </div>
-    </div>
+    </footer>
 
     <script src="js/main.js"></script>
 </body>
