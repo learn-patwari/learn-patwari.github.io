@@ -1,8 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Static tagline
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ===== TYPING TAGLINE =====
     const typedEl = document.getElementById('typedText');
-    if (typedEl) typedEl.textContent = 'Staff Software Engineer · Java · Kubernetes · MLOps';
+    const phrases = [
+        'Staff Software Engineer',
+        'Java · Spring Boot · Microservices',
+        'Kubernetes & Cloud-Native',
+        'MLOps Platform Lead',
+    ];
+    if (typedEl) {
+        if (reduceMotion) {
+            typedEl.textContent = phrases[0];
+            const c = document.querySelector('.cursor');
+            if (c) c.style.display = 'none';
+        } else {
+            let pIndex = 0, cIndex = 0, deleting = false;
+            const type = () => {
+                const current = phrases[pIndex];
+                cIndex += deleting ? -1 : 1;
+                typedEl.textContent = current.slice(0, cIndex);
+
+                let delay = deleting ? 45 : 80;
+                if (!deleting && cIndex === current.length) {
+                    delay = 1800;            // pause at full phrase
+                    deleting = true;
+                } else if (deleting && cIndex === 0) {
+                    deleting = false;
+                    pIndex = (pIndex + 1) % phrases.length;
+                    delay = 400;             // pause before next phrase
+                }
+                setTimeout(type, delay);
+            };
+            setTimeout(type, 900);
+        }
+    }
 
     // ===== DYNAMIC EXPERIENCE YEARS =====
     function calcExp(startDate) {
@@ -30,11 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // ===== ACTIVE NAV LINK ON SCROLL =====
+    // ===== ACTIVE NAV LINK + NAVBAR SHRINK ON SCROLL =====
     const sections = document.querySelectorAll('section[id]');
     const navLinkEls = document.querySelectorAll('.nav-link');
+    const navbar = document.getElementById('navbar');
 
-    function updateActiveNav() {
+    function onScroll() {
         let current = '';
         sections.forEach(sec => {
             if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
@@ -42,9 +76,80 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinkEls.forEach(link => {
             link.classList.toggle('active', link.getAttribute('href') === '#' + current);
         });
+        navbar?.classList.toggle('scrolled', window.scrollY > 40);
     }
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ===== SCROLL REVEAL (IntersectionObserver) =====
+    const revealEls = document.querySelectorAll('.reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+    } else {
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+
+                // Stagger siblings that share a parent for a cascade effect
+                const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
+                const idx = siblings.indexOf(el);
+                if (idx > 0) el.style.transitionDelay = Math.min(idx * 90, 450) + 'ms';
+
+                // Stagger inner children when [data-stagger] is set
+                if (el.hasAttribute('data-stagger')) {
+                    Array.from(el.children).forEach((child, i) => {
+                        child.style.transitionDelay = Math.min(i * 70, 560) + 'ms';
+                    });
+                }
+
+                el.classList.add('is-visible');
+                obs.unobserve(el);
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+    }
+
+    // ===== COUNT-UP NUMBERS =====
+    function animateCount(el) {
+        const target = el.dataset.countTarget;
+        const match = String(target).match(/^([\d,.]+)(.*)$/);
+        if (!match) { el.textContent = target; return; }
+        const num = parseFloat(match[1].replace(/,/g, ''));
+        const suffix = match[2] || '';
+        const isFloat = match[1].includes('.');
+        const duration = 1400;
+        const start = performance.now();
+
+        const step = (now) => {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+            const val = num * eased;
+            el.textContent = (isFloat ? val.toFixed(1) : Math.round(val).toLocaleString()) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+        };
+        requestAnimationFrame(step);
+    }
+
+    function initCounters(scope) {
+        const nums = (scope || document).querySelectorAll('.stat-num, .gh-num');
+        nums.forEach(el => {
+            if (el.dataset.counted) return;
+            el.dataset.countTarget = el.textContent.trim();
+            el.dataset.counted = '1';
+            if (reduceMotion || !('IntersectionObserver' in window)) return;
+            el.textContent = '0';
+            const obs = new IntersectionObserver((entries, o) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { animateCount(el); o.unobserve(el); }
+                });
+            }, { threshold: 0.5 });
+            obs.observe(el);
+        });
+    }
+    initCounters();
 
 
     // ===== GITHUB API =====
@@ -71,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="gh-lbl">${d.lbl}</span>
                 </div>
             `).join('');
+            initCounters(container);
         } catch {
             container.innerHTML = `<p style="color:var(--text-muted);font-size:.875rem;padding:.5rem 0;">GitHub data unavailable — <a href="https://github.com/learn-patwari" target="_blank" rel="noopener">visit profile</a>.</p>`;
         }
