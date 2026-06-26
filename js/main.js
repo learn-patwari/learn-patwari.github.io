@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `).join('');
             initCounters(container);
+            container.querySelectorAll('.gh-card').forEach(attachTilt);
         } catch {
             container.innerHTML = `<p style="color:var(--text-muted);font-size:.875rem;padding:.5rem 0;">GitHub data unavailable — <a href="https://github.com/learn-patwari" target="_blank" rel="noopener">visit profile</a>.</p>`;
         }
@@ -249,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (res.ok && data.success) {
                     notice.textContent = 'Message sent. I will get back to you shortly.';
                     notice.classList.add('form-notice-success');
+                    playFormSuccess(submitBtn, notice);
                     form.reset();
                 } else {
                     notice.textContent = data.message || 'Submission failed. Please try emailing directly.';
@@ -262,6 +264,213 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.textContent = 'Send message';
             }
         });
+    }
+
+    // ===== HERO PARTICLE CONSTELLATION =====
+    const heroCanvas = document.querySelector('.hero-canvas');
+    const heroSection = document.getElementById('home');
+
+    if (heroCanvas && heroSection && !reduceMotion) {
+        const ctx = heroCanvas.getContext('2d');
+        let dpr = 1, cssW = 0, cssH = 0;
+        let particles = [];
+        let rafId = null;
+        let running = false;
+        let inView = true;
+
+        const LINK_DIST = 130;   // px; lines drawn under this distance
+        const DOT_R = 1.6;       // particle radius (css px)
+
+        const rand = (min, max) => min + Math.random() * (max - min);
+
+        const particleCount = () => {
+            const w = cssW || window.innerWidth;
+            if (w < 600)  return 22;
+            if (w < 1000) return 38;
+            return Math.min(64, Math.round(w / 26));
+        };
+
+        const makeParticles = () => {
+            const n = particleCount();
+            particles = [];
+            for (let i = 0; i < n; i++) {
+                particles.push({
+                    x: rand(0, cssW),
+                    y: rand(0, cssH),
+                    vx: rand(-0.18, 0.18),
+                    vy: rand(-0.18, 0.18),
+                });
+            }
+        };
+
+        const resize = () => {
+            const rect = heroSection.getBoundingClientRect();
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            cssW = rect.width;
+            cssH = rect.height;
+            heroCanvas.width  = Math.round(cssW * dpr);
+            heroCanvas.height = Math.round(cssH * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            makeParticles();
+        };
+
+        const draw = () => {
+            ctx.clearRect(0, 0, cssW, cssH);
+
+            for (const p of particles) {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < -10) p.x = cssW + 10; else if (p.x > cssW + 10) p.x = -10;
+                if (p.y < -10) p.y = cssH + 10; else if (p.y > cssH + 10) p.y = -10;
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                const a = particles[i];
+                for (let j = i + 1; j < particles.length; j++) {
+                    const b = particles[j];
+                    const dx = a.x - b.x, dy = a.y - b.y;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 > LINK_DIST * LINK_DIST) continue;
+                    const d = Math.sqrt(d2);
+                    const alpha = (1 - d / LINK_DIST) * 0.18;
+                    ctx.strokeStyle = 'rgba(201,168,76,' + alpha.toFixed(3) + ')';
+                    ctx.lineWidth = 0.6;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.stroke();
+                }
+            }
+
+            ctx.fillStyle = 'rgba(201,168,76,0.5)';
+            for (const p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, DOT_R, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        };
+
+        const loop = () => {
+            draw();
+            rafId = requestAnimationFrame(loop);
+        };
+        const start = () => {
+            if (running || reduceMotion) return;
+            running = true;
+            rafId = requestAnimationFrame(loop);
+        };
+        const stop = () => {
+            running = false;
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = null;
+        };
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                inView = entries[0].isIntersecting;
+                if (inView && !document.hidden) start(); else stop();
+            }, { threshold: 0 });
+            io.observe(heroSection);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stop();
+            else if (inView) start();
+        });
+
+        let resizeQueued = false;
+        window.addEventListener('resize', () => {
+            if (resizeQueued) return;
+            resizeQueued = true;
+            requestAnimationFrame(() => { resize(); resizeQueued = false; });
+        }, { passive: true });
+
+        resize();
+        start();
+    }
+
+    // ===== MICRO-INTERACTION GUARDS =====
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    const motionOK = !reduceMotion;
+    const tiltEnabled = motionOK && !coarsePointer;
+
+    // ===== CARD 3D TILT =====
+    const TILT_MAX = 6; // degrees
+    function attachTilt(card) {
+        if (!tiltEnabled || card.dataset.tilt) return;
+        card.dataset.tilt = '1';
+        card.style.perspective = '700px';
+        card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width;
+            const py = (e.clientY - r.top) / r.height;
+            const rotY = (px - 0.5) * 2 * TILT_MAX;
+            const rotX = (0.5 - py) * 2 * TILT_MAX;
+            card.classList.add('tilt-active');
+            card.classList.remove('tilt-reset');
+            card.style.transform =
+                `perspective(700px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-3px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('tilt-active');
+            card.classList.add('tilt-reset');
+            card.style.transform = '';
+        });
+    }
+    if (tiltEnabled) {
+        document.querySelectorAll('.stat-item, .skill-group, .achievement-card, .timeline-body, .gh-card')
+            .forEach(attachTilt);
+    }
+
+    // ===== BUTTON RIPPLE =====
+    if (motionOK) {
+        document.querySelectorAll('.btn').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                if (btn.disabled) return;
+                const r = btn.getBoundingClientRect();
+                const size = Math.max(r.width, r.height);
+                const span = document.createElement('span');
+                span.className = 'ripple';
+                span.style.width = span.style.height = size + 'px';
+                span.style.left = (e.clientX - r.left - size / 2) + 'px';
+                span.style.top  = (e.clientY - r.top  - size / 2) + 'px';
+                btn.appendChild(span);
+                span.addEventListener('animationend', () => span.remove());
+            });
+        });
+    }
+
+    // ===== MAGNETIC BUTTONS =====
+    if (motionOK && !coarsePointer) {
+        const STRENGTH = 0.3;
+        const MAX = 8;
+        document.querySelectorAll('.btn-primary, .nav-cta').forEach((el) => {
+            el.classList.add('magnetic');
+            const lift = el.classList.contains('nav-cta') ? 1 : 2;
+            el.addEventListener('mousemove', (e) => {
+                const r = el.getBoundingClientRect();
+                let dx = (e.clientX - (r.left + r.width / 2)) * STRENGTH;
+                let dy = (e.clientY - (r.top + r.height / 2)) * STRENGTH;
+                dx = Math.max(-MAX, Math.min(MAX, dx));
+                dy = Math.max(-MAX, Math.min(MAX, dy));
+                el.classList.remove('magnet-reset');
+                el.style.transform = `translate(${dx.toFixed(1)}px, ${(dy - lift).toFixed(1)}px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.add('magnet-reset');
+                el.style.transform = '';
+            });
+        });
+    }
+
+    // ===== FORM SUCCESS ANIMATION =====
+    function playFormSuccess(btn, notice) {
+        if (!motionOK) return;
+        const check = document.createElement('span');
+        check.className = 'success-check';
+        check.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6"/></svg>';
+        notice.prepend(check);
+        btn.classList.add('btn-success-pulse');
+        btn.addEventListener('animationend', () => btn.classList.remove('btn-success-pulse'), { once: true });
     }
 
 });
