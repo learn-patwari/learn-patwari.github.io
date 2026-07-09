@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay Patwari — Staff Engineer</title>
+  <meta name="description" content="Portfolio of Akshay Patwari — Staff Java / MLOps Engineer based in Bengaluru." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.165.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <!-- loader -->
+  <div class="loader" id="loader">
+    <span class="loader-mark">AP<span class="accent">.</span></span>
+    <span class="loader-bar"><span></span></span>
+  </div>
+
+  <!-- 3D scene -->
+  <canvas id="webgl"></canvas>
+
+  <!-- scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav class="nav" id="nav">
+    <a href="#home" class="nav-logo">AP<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about"><span class="nav-num">01.</span>About</a></li>
+      <li><a href="#skills"><span class="nav-num">02.</span>Skills</a></li>
+      <li><a href="#experience"><span class="nav-num">03.</span>Experience</a></li>
+      <li><a href="#projects"><span class="nav-num">04.</span>Projects</a></li>
+      <li><a href="#contact"><span class="nav-num">05.</span>Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-outline nav-cta">Hire Me</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Hi, my name is</p>
+      <h1 class="hero-title reveal"><span class="hero-line">Akshay</span><span class="hero-line gradient-text">Patwari</span></h1>
+      <h2 class="hero-sub reveal">I build <span class="typed" id="typed"></span><span class="caret">|</span></h2>
+      <p class="hero-desc reveal">
+        Staff Engineer specializing in <strong>Java backends</strong> and <strong>MLOps platforms</strong>.
+        I design distributed systems that ship machine learning to production — reliably, at scale.
+        Based in Bengaluru, India.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-num" data-count="10">0</span><span class="stat-plus">+</span><p>Years Experience</p></div>
+        <div class="stat"><span class="stat-num" data-count="40">0</span><span class="stat-plus">+</span><p>Systems Shipped</p></div>
+        <div class="stat"><span class="stat-num" data-count="99">0</span><span class="stat-plus">.9%</span><p>Uptime Delivered</p></div>
+      </div>
+    </div>
+    <p class="drag-hint" id="dragHint"><span class="drag-icon">↻</span> Click &amp; drag to spin the cube</p>
+    <div class="hero-scroll">
+      <span></span>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══════════ ABOUT ═══════════ -->
+    <section class="section" id="about">
+      <h2 class="section-title reveal"><span class="section-num">01.</span> About Me</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm a backend engineer who fell in love with the space where <strong>software engineering
+            meets machine learning</strong>. Over the last decade I've gone from writing my first
+            Spring service to architecting ML platforms that serve millions of predictions a day.
+          </p>
+          <p>
+            My sweet spot is the <strong>infrastructure layer of ML</strong> — feature stores, model
+            serving, training pipelines, observability — built with the same rigor as any
+            high-traffic backend system.
+          </p>
+          <p>Technologies I work with daily:</p>
+          <ul class="about-list">
+            <li>Java 21 / Spring Boot</li>
+            <li>Kubernetes &amp; Helm</li>
+            <li>Kafka &amp; Flink</li>
+            <li>Python / PyTorch</li>
+            <li>MLflow &amp; Kubeflow</li>
+            <li>AWS &amp; Terraform</li>
+          </ul>
+        </div>
+        <div class="about-card reveal">
+          <div class="code-window">
+            <div class="code-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="code-file">engineer.java</span></div>
+            <pre><code><span class="kw">public class</span> <span class="cls">AkshayPatwari</span> <span class="kw">implements</span> <span class="cls">StaffEngineer</span> {
+
+  <span class="kw">private final</span> String location = <span class="str">"Bengaluru, IN"</span>;
+  <span class="kw">private final</span> String[] focus = {
+    <span class="str">"Distributed Systems"</span>,
+    <span class="str">"MLOps Platforms"</span>,
+    <span class="str">"Engineering Leadership"</span>
+  };
+
+  <span class="ann">@Override</span>
+  <span class="kw">public</span> Impact solve(HardProblem p) {
+    <span class="kw">return</span> p.decompose()
+            .automate()
+            .ship();  <span class="cmt">// then observe &amp; iterate</span>
+  }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SKILLS ═══════════ -->
+    <section class="section" id="skills">
+      <h2 class="section-title reveal"><span class="section-num">02.</span> Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>⚙️ Backend Engineering</h3>
+          <div class="skill"><div class="skill-head"><span>Java / Spring Boot</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:95%"></div></div></div>
+          <div class="skill"><div class="skill-head"><span>Distributed Systems</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:90%"></div></div></div>
+          <div class="skill"><div class="skill-head"><span>Kafka / Event Streaming</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div></div>
+          <div class="skill"><div class="skill-head"><span>SQL / NoSQL Databases</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>🤖 MLOps &amp; Platform</h3>
+          <div class="skill"><div class="skill-head"><span>Kubernetes / Helm</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:92%"></div></div></div>
+          <div class="skill"><div class="skill-head"><span>ML Pipelines (Kubeflow, MLflow)</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div></div>
+          <div class="skill"><div class="skill-head"><span>Model Serving &amp; Feature Stores</span><span>86%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:86%"></div></div></div>
+          <div class="skill"><div class="skill-head"><span>AWS / Terraform / CI-CD</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="--w:90%"></div></div></div>
+        </div>
+      </div>
+      <div class="tech-ticker reveal" aria-hidden="true">
+        <div class="ticker-track" id="tickerTrack">
+          <span>Java</span><span>Spring Boot</span><span>Kubernetes</span><span>Kafka</span><span>Flink</span><span>PyTorch</span><span>MLflow</span><span>Kubeflow</span><span>Docker</span><span>Terraform</span><span>AWS</span><span>PostgreSQL</span><span>Redis</span><span>gRPC</span><span>Prometheus</span><span>Grafana</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ EXPERIENCE ═══════════ -->
+    <section class="section" id="experience">
+      <h2 class="section-title reveal"><span class="section-num">03.</span> Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">2022 — Present</span>
+            <h3>Staff Engineer, ML Platform</h3>
+            <p class="timeline-company">FinTech Scale-up · Bengaluru</p>
+            <p>Own the architecture of a real-time ML platform serving 50M+ daily predictions. Led the migration from batch scoring to streaming inference on Kafka + Flink, cutting decision latency from hours to under 200ms.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">2019 — 2022</span>
+            <h3>Senior Software Engineer</h3>
+            <p class="timeline-company">E-commerce Unicorn · Bengaluru</p>
+            <p>Built the order-orchestration backbone handling peak sale-day traffic of 1M+ orders/hour. Introduced the team's first ML-driven fraud detection service and the MLOps tooling around it.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-date">2016 — 2019</span>
+            <h3>Software Engineer</h3>
+            <p class="timeline-company">Enterprise SaaS · Bengaluru</p>
+            <p>Developed multi-tenant Java microservices and modernized a monolith into event-driven services. Grew from writing features to owning services end-to-end in production.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PROJECTS ═══════════ -->
+    <section class="section" id="projects">
+      <h2 class="section-title reveal"><span class="section-num">04.</span> Featured Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card reveal" data-tilt>
+          <div class="project-glow"></div>
+          <div class="project-top">
+            <span class="project-icon">📡</span>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub repository" title="GitHub">⌥</a>
+              <a href="#" aria-label="Live demo" title="Live">↗</a>
+            </div>
+          </div>
+          <h3>Streaming Feature Store</h3>
+          <p>Low-latency feature store computing real-time features from Kafka streams with point-in-time-correct offline retrieval for training. Powers all fraud &amp; risk models.</p>
+          <ul class="project-tags"><li>Java</li><li>Flink</li><li>Redis</li><li>Kafka</li></ul>
+        </article>
+        <article class="project-card reveal" data-tilt>
+          <div class="project-glow"></div>
+          <div class="project-top">
+            <span class="project-icon">🚀</span>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub repository" title="GitHub">⌥</a>
+              <a href="#" aria-label="Live demo" title="Live">↗</a>
+            </div>
+          </div>
+          <h3>Model Serving Gateway</h3>
+          <p>Multi-model inference gateway with shadow deployments, canary rollouts and automatic rollback on metric regression. Zero-downtime model releases, dozens per week.</p>
+          <ul class="project-tags"><li>Spring Boot</li><li>gRPC</li><li>Kubernetes</li><li>Istio</li></ul>
+        </article>
+        <article class="project-card reveal" data-tilt>
+          <div class="project-glow"></div>
+          <div class="project-top">
+            <span class="project-icon">🔍</span>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub repository" title="GitHub">⌥</a>
+              <a href="#" aria-label="Live demo" title="Live">↗</a>
+            </div>
+          </div>
+          <h3>ML Observability Suite</h3>
+          <p>Drift detection, prediction logging and feature-quality monitoring wired into Prometheus &amp; Grafana. Caught silent model degradation weeks before business metrics moved.</p>
+          <ul class="project-tags"><li>Python</li><li>Prometheus</li><li>Grafana</li><li>ClickHouse</li></ul>
+        </article>
+        <article class="project-card reveal" data-tilt>
+          <div class="project-glow"></div>
+          <div class="project-top">
+            <span class="project-icon">🧩</span>
+            <div class="project-links">
+              <a href="#" aria-label="GitHub repository" title="GitHub">⌥</a>
+              <a href="#" aria-label="Live demo" title="Live">↗</a>
+            </div>
+          </div>
+          <h3>Self-Serve Training Pipelines</h3>
+          <p>Declarative pipeline framework letting data scientists go from notebook to scheduled, reproducible training jobs with one YAML file. Cut time-to-production from weeks to days.</p>
+          <ul class="project-tags"><li>Kubeflow</li><li>MLflow</li><li>Terraform</li><li>AWS</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section class="section contact" id="contact">
+      <h2 class="section-title reveal"><span class="section-num">05.</span> Get In Touch</h2>
+      <p class="contact-lead reveal">
+        I'm open to staff-level backend and ML platform roles, consulting, and interesting
+        conversations about distributed systems. My inbox is always open.
+      </p>
+      <a href="mailto:javaclaude1@gmail.com" class="btn btn-primary btn-lg reveal">Say Hello 👋</a>
+      <div class="socials reveal">
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Designed &amp; built by Akshay Patwari · © <span id="year"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module" src="scene.js"></script>
+</body>
+</html>
