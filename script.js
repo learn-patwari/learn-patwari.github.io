@@ -7,10 +7,10 @@ setTimeout(() => document.getElementById("loader").classList.add("done"), 4000);
 
 /* ═══════════════ Typing effect ═══════════════ */
 const roles = [
-  "scalable Java backends.",
-  "ML platforms that ship.",
-  "real-time data pipelines.",
-  "systems that don't page you at 3am.",
+  "scalable Java microservices.",
+  "MLOps platforms end to end.",
+  "Kubernetes-native backends.",
+  "teams that ship reliably.",
 ];
 
 const typedEl = document.getElementById("typed");
