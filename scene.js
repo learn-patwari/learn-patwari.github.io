@@ -86,6 +86,7 @@ if (renderer) {
           dist: 5 + Math.random() * 9,
           spinAxis: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize(),
           spinSpeed: (Math.random() - 0.5) * 2.4,
+          spinAngle: 0,
         };
         cubeGroup.add(cubelet);
         cubelets.push(cubelet);
@@ -245,8 +246,15 @@ if (renderer) {
         base.y + dir.y * dist * boom,
         base.z + dir.z * dist * boom
       );
-      if (boom > 0.001 && !reduceMotion) {
-        c.rotateOnAxis(spinAxis, spinSpeed * 0.016 * boom);
+      // Orientation is set absolutely (not accumulated) so the cube
+      // untwists back to a perfect grid when scrolling back up.
+      if (!reduceMotion) {
+        if (boom > 0.001) {
+          c.userData.spinAngle += spinSpeed * 0.016 * boom;
+        } else {
+          c.userData.spinAngle = 0;
+        }
+        c.quaternion.setFromAxisAngle(spinAxis, c.userData.spinAngle * boom);
       }
       const s = 1 - boom * 0.45;
       c.scale.set(s, s, s);
